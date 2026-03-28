@@ -226,6 +226,18 @@ const HCMS: React.FC = () => {
               ))}
             </div>
 
+            {/* Sub-systems note */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 2 }}
+              className="mt-8 p-4 rounded-lg border border-border/50 bg-secondary/20"
+            >
+              <p className="font-mono text-xs text-text-dim leading-relaxed">
+                Includes sub-systems: <span className="text-text-secondary">Cognitive Robustness Benchmark, Learning Analytics Engine, Confidence Calibration Module</span>
+              </p>
+            </motion.div>
+
             {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}

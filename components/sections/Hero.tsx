@@ -58,13 +58,13 @@ const Hero: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         {/* Badge */}
         <motion.div
-          initial={{ y: -50, opacity: 0 }}
+          initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-8 inline-block"
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mb-5"
         >
-          <div className="inline-flex items-center px-6 py-3 rounded-full border border-accent-primary/30 bg-accent-primary/5 backdrop-blur-sm">
-            <span className="font-mono text-sm text-accent-primary">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-accent-primary/30 bg-transparent">
+            <span className="font-mono text-xs tracking-widest uppercase text-text-secondary">
               {constants.title} · Age {constants.age}
             </span>
           </div>

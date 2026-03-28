@@ -57,13 +57,7 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link href="#" className="group flex items-center gap-2">
-            <span className="font-display font-bold text-2xl tracking-tight text-text-primary">
-              RAYAN
-            </span>
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
-            </span>
+            <img src="/logo.svg" alt="RayanAIX" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -93,7 +87,7 @@ const Navbar: React.FC = () => {
           {/* CTA */}
           <div className="hidden md:block">
             <motion.a
-              href="/resume.pdf"
+              href="https://linkedin.com/in/muhammadrayanshahid"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 text-sm font-medium hover:bg-emerald-500/20 transition-all duration-300"
@@ -104,7 +98,7 @@ const Navbar: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
               </span>
-              Open to Work
+              Open to Opportunities ↗
             </motion.a>
           </div>
 
@@ -175,10 +169,12 @@ const Navbar: React.FC = () => {
                   transition={{ delay: navLinks.length * 0.1 }}
                 >
                   <a
-                    href="/resume.pdf"
+                    href="https://linkedin.com/in/muhammadrayanshahid"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 text-sm font-medium"
                   >
-                    Open to Work
+                    Open to Opportunities ↗
                   </a>
                 </motion.div>
               </div>

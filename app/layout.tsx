@@ -21,18 +21,18 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Muhammad Rayan Shahid — AI Researcher, 16",
-  description: "Independent AI researcher and founder of ByteBrilliance AI. Creator of HCMS — a DOI-backed cognitive measurement framework. Building AI that measures human minds.",
-  keywords: "Muhammad Rayan Shahid, RayanAIX, HCMS, AI researcher, ByteBrilliance, cognitive AI, Pakistan, DOI, preprint, cognitive stability",
+  description: "Independent AI researcher. Creator of HCMS — a DOI-backed cognitive measurement framework. Building AI that measures how humans think.",
+  keywords: "Muhammad Rayan Shahid, RayanAIX, HCMS, AI researcher, cognitive AI, Pakistan, DOI, preprint, cognitive stability",
   openGraph: {
     title: "Muhammad Rayan Shahid — AI Researcher",
     description: "16-year-old independent AI researcher. Published. Building.",
-    url: "https://rayanaix.vercel.app",
+    url: "https://muhammad-rayan-shahid-portfolio.vercel.app",
     type: "website",
     siteName: "Muhammad Rayan Shahid",
   },
   authors: [{ name: "Muhammad Rayan Shahid" }],
   creator: "Muhammad Rayan Shahid",
-  publisher: "ByteBrilliance AI",
+  publisher: "Muhammad Rayan Shahid",
   robots: {
     index: true,
     follow: true,
@@ -43,6 +43,11 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
 };
 

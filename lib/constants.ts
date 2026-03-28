@@ -9,13 +9,13 @@ export const constants = {
   email: "m.rayanshahid5@gmail.com",
   social: {
     github: "https://github.com/RayanAIX",
-    linkedin: "https://linkedin.com/in/muhammad-rayan-shahid",
+    linkedin: "https://linkedin.com/in/muhammadrayanshahid",
     kaggle: "https://kaggle.com/muhammadrayanshahid",
     huggingface: "https://huggingface.co/RayNetic",
     youtube: "https://youtube.com/@ByteBrillianceAI",
     substack: "https://substack.com/@muhammedrayanshahid",
   },
   doi: "10.5281/zenodo.18269740",
-  doiUrl: "https://doi.org/10.5281/zenodo.18269740",
-  repoUrl: "https://github.com/RayanAIX/HCMS",
+  doiUrl: "https://zenodo.org/records/18269740",
+  repoUrl: "https://github.com/RayanAIX/HCMS-Human-Cognition-Measurement-System",
 };

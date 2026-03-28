@@ -30,32 +30,6 @@ export const projects: Project[] = [
       "The pipeline processes input questions through four core layers: Understanding Analysis → Confidence Calibration → Consistency Check → Robustness Testing. Each layer produces signals that feed into an Explainability Layer before generating the final Cognitive Profile Output.",
   },
   {
-    id: "cognitive-benchmark",
-    title: "Cognitive Robustness Benchmark",
-    description:
-      "Generates semantic perturbations of questions to measure answer drift, confidence volatility, and explanation inconsistency under controlled variation.",
-    category: "Research",
-    accentColor: "#7c3aed",
-    tech: ["Python", "NLP", "Statistical Analysis"],
-    github: "https://github.com/RayanAIX/CognitiveBenchmark",
-    status: "Active Research",
-    fullDescription:
-      "This benchmark creates controlled variations of questions to test the robustness of AI and human reasoning. By measuring how answers, confidence levels, and explanations change under perturbation, we can identify fragile understanding versus stable comprehension.",
-  },
-  {
-    id: "learning-analytics",
-    title: "Learning Analytics System",
-    description:
-      "Tracks confidence, hesitation patterns, and mastery progression over time. Bridges educational psychology and AI measurement.",
-    category: "Research",
-    accentColor: "#7c3aed",
-    tech: ["Python", "Pandas", "Scikit-learn"],
-    github: "https://github.com/RayanAIX/LearningAnalytics",
-    status: "Research Prototype",
-    fullDescription:
-      "An analytics platform that goes beyond simple score tracking. It captures confidence levels, response times, hesitation patterns, and learning curves to build comprehensive learner profiles that inform adaptive educational interventions.",
-  },
-  {
     id: "fake-news-detector",
     title: "Fake News Detection AI",
     description:
