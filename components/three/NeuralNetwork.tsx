@@ -141,10 +141,21 @@ const NeuralNetwork: React.FC<NeuralNetworkProps> = ({ mousePosition }) => {
     // Could animate line opacity here
   });
 
+  // Create initial positions array for Points component
+  const initialPositions = useMemo(() => {
+    const positions = new Float32Array(nodes.length * 3);
+    nodes.forEach((node, i) => {
+      positions[i * 3] = node.position.x;
+      positions[i * 3 + 1] = node.position.y;
+      positions[i * 3 + 2] = node.position.z;
+    });
+    return positions;
+  }, [nodes]);
+
   return (
     <group>
       {/* Nodes */}
-      <Points ref={pointsRef} positions={nodes.map((n) => n.position)} stride={3}>
+      <Points ref={pointsRef} positions={initialPositions} stride={3}>
         <PointMaterial
           transparent
           color="#00d4ff"
