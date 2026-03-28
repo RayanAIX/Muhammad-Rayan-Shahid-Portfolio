@@ -171,9 +171,7 @@ const NeuralNetwork: React.FC<NeuralNetworkProps> = ({ mousePosition }) => {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={linePositions.count}
-            array={linePositions.array as Float32Array}
-            itemSize={3}
+            args={[linePositions.array, linePositions.itemSize]}
           />
         </bufferGeometry>
         <lineBasicMaterial transparent color="#00d4ff" opacity={0.12} />
