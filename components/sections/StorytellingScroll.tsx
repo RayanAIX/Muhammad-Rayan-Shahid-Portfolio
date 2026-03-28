@@ -125,7 +125,7 @@ const StorytellingScroll: React.FC = () => {
   return (
     <section
       ref={(el) => {
-        containerRef.current = el;
+        containerRef.current = el as HTMLDivElement;
         ref(el);
       }}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary text-text-primary"
