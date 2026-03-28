@@ -190,7 +190,7 @@ const Hero: React.FC = () => {
             <span className="font-mono text-xs text-text-dim">scroll to explore</span>
           </motion.div>
         )}
-      </div>
+      </motion.div>
 
       {/* Bottom fade gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent" />
