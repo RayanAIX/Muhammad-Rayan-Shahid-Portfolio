@@ -12,7 +12,6 @@ const LenisWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      smoothTouch: false,
       touchMultiplier: 2,
     });
 
