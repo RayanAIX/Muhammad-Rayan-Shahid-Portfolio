@@ -126,6 +126,8 @@ const HCMS: React.FC = () => {
     { label: "Learning Analytics", href: "https://github.com/topics/learning-analytics" },
   ];
 
+  const [activeTab, setActiveTab] = useState(0);
+
   // Citation data
   const bibTeX = `@article{shahid2026hcms,
   title={Beyond Correctness: Measuring Cognitive Stability and Confidence Calibration in Human Understanding},
@@ -210,6 +212,109 @@ const HCMS: React.FC = () => {
             stability under pressure. This is what assessment looks like when the
             question matters more than the answer.
           </motion.p>
+
+            {/* HCMS Detail Tabs */}
+            <div className="mt-12">
+              <div className="flex flex-wrap justify-center gap-4 border-b border-border mb-6">
+                {["Confidence Calibration", "Reasoning Consistency", "Cognitive Stability", "Explainability"].map((tab, idx) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(idx)}
+                    className={`px-4 py-2 text-sm font-mono relative transition-colors ${
+                      activeTab === idx
+                        ? "text-accent-primary border-b-2 border-accent-primary"
+                        : "text-text-secondary hover:text-accent-primary"
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+
+              <div className="min-h-[200px]">
+                {activeTab === 0 && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-accent-primary/10 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent-primary" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M12 2L12 22M2 12L22 12" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-display text-xl font-bold text-text-primary mb-2">Confidence Calibration</h4>
+                      <p className="font-body text-text-secondary leading-relaxed mb-4">
+                        Measures the alignment between a student&apos;s confidence and their accuracy. Misalignment indicates overconfidence or underconfidence, both signs of unstable understanding.
+                      </p>
+                      <div className="w-full max-w-xs h-8 bg-secondary/30 rounded overflow-hidden flex">
+                        <div className="h-full bg-accent-primary" style={{ width: "70%" }}></div>
+                        <div className="h-full bg-accent-secondary" style={{ width: "30%" }}></div>
+                      </div>
+                      <p className="text-xs text-text-dim mt-1 font-mono">Calibration gap visualization</p>
+                    </div>
+                  </motion.div>
+                )}
+                {activeTab === 1 && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-accent-primary/10 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent-primary" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M3 12h4l3-9 4 18 3-9h4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-display text-xl font-bold text-text-primary mb-2">Reasoning Consistency</h4>
+                      <p className="font-body text-text-secondary leading-relaxed mb-4">
+                        Analyzes whether a student&apos;s reasoning process remains coherent across similar problems. Inconsistent reasoning suggests fragile knowledge that fails under variation.
+                      </p>
+                      <svg viewBox="0 0 100 30" className="w-full max-w-xs">
+                        <polyline points="0,25 20,20 40,23 60,15 80,10 100,5" fill="none" stroke="var(--accent-primary)" strokeWidth="2"/>
+                      </svg>
+                      <p className="text-xs text-text-dim mt-1 font-mono">Consistency across attempts</p>
+                    </div>
+                  </motion.div>
+                )}
+                {activeTab === 2 && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-accent-primary/10 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent-primary" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <circle cx="12" cy="12" r="8" strokeLinecap="round"/>
+                        <path d="M12 8v8M8 12h8" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-display text-xl font-bold text-text-primary mb-2">Cognitive Stability</h4>
+                      <p className="font-body text-text-secondary leading-relaxed mb-4">
+                        Captures how performance varies over time and under pressure. A cognitively stable learner maintains accuracy despite perturbations, indicating robust understanding.
+                      </p>
+                      <div className="w-full max-w-xs h-8 bg-secondary/30 rounded p-1 flex gap-1">
+                        {[60, 75, 50, 80, 90, 65, 70, 85].map((h, i) => (
+                          <div key={i} className="flex-1 bg-accent-primary/60 rounded" style={{ height: `${h}%` }}></div>
+                        ))}
+                      </div>
+                      <p className="text-xs text-text-dim mt-1 font-mono">Performance stability</p>
+                    </div>
+                  </motion.div>
+                )}
+                {activeTab === 3 && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-accent-primary/10 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-8 h-8 text-accent-primary" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <circle cx="12" cy="12" r="4" strokeLinecap="round"/>
+                        <path d="M12 2v2M12 20v2M2 12h2M20 12h2" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-display text-xl font-bold text-text-primary mb-2">Explainability</h4>
+                      <p className="font-body text-text-secondary leading-relaxed mb-4">
+                        Provides interpretable diagnostics for each assessment, showing why a response was classified as calibrated, consistent, or unstable. Transparent signals for educators and researchers.
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-accent-primary animate-pulse"></div>
+                        <span className="font-mono text-xs text-accent-primary">Explainable AI</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </div>
 
           {/* Animated Metrics */}
           <motion.div
@@ -439,6 +544,22 @@ const HCMS: React.FC = () => {
             </svg>
           </motion.div>
         </div>
+
+        {/* HCMS Philosophy Laws */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, staggerChildren: 0.2 }}
+          className="mb-12"
+        >
+          <h4 className="font-mono text-sm text-accent-primary mb-3">Three Laws of Understanding</h4>
+          <div className="space-y-2 font-mono text-base">
+            <p>Law I    &quot;Understanding requires more than correctness.&quot;</p>
+            <p>Law II   &quot;Confidence without calibration is noise.&quot;</p>
+            <p>Law III  &quot;Intelligence that cannot explain itself is incomplete.&quot;</p>
+          </div>
+        </motion.div>
 
         {/* Citation Callout */}
         <motion.div
