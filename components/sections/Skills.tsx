@@ -1,207 +1,50 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
-const Skills: React.FC = () => {
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-
-  const skillGroups = [
+const skillTree = {
+  center: "MR",
+  categories: [
     {
-      ring: 1,
-      title: "Languages",
-      skills: [
-        { name: "Python", description: "Core research and ML" },
-        { name: "TeX", description: "Academic publishing" },
-        { name: "JavaScript", description: "Web deployment" },
-      ],
+      label: "Languages",
       color: "#00d4ff",
+      skills: ["Python", "TeX", "JavaScript"],
     },
     {
-      ring: 2,
-      title: "ML/DL",
-      skills: [
-        { name: "TensorFlow", description: "Deep learning frameworks" },
-        { name: "Keras", description: "Rapid prototyping" },
-        { name: "PyTorch", description: "Research-grade ML" },
-        { name: "Scikit-learn", description: "Classical ML" },
-      ],
+      label: "ML / DL",
       color: "#7c3aed",
+      skills: ["TensorFlow", "Keras", "PyTorch", "Scikit-learn"],
     },
     {
-      ring: 3,
-      title: "NLP",
-      skills: [
-        { name: "NLTK", description: "Text processing" },
-        { name: "TF-IDF", description: "Feature extraction" },
-        { name: "Whisper", description: "Speech recognition" },
-        { name: "GPT API", description: "LLM integration" },
-      ],
-      color: "#f59e0b",
+      label: "NLP",
+      color: "#00d4ff",
+      skills: ["NLTK", "TF-IDF", "Whisper", "GPT API"],
     },
     {
-      ring: 4,
-      title: "Deploy",
-      skills: [
-        { name: "HuggingFace", description: "Model hosting" },
-        { name: "Streamlit", description: "Rapid dashboards" },
-        { name: "Gradio", description: "Interactive demos" },
-        { name: "Vercel", description: "Production web apps" },
-      ],
+      label: "Deploy",
       color: "#10b981",
+      skills: ["HuggingFace", "Vercel", "Streamlit", "Gradio"],
     },
     {
-      ring: 5,
-      title: "Research",
-      skills: [
-        { name: "Zenodo", description: "Open access publishing" },
-        { name: "LaTeX", description: "Technical writing" },
-        { name: "Jupyter", description: "Exploratory analysis" },
-        { name: "Pandas/NumPy", description: "Data manipulation" },
-      ],
-      color: "#ec4899",
+      label: "Research",
+      color: "#f59e0b",
+      skills: ["Zenodo", "LaTeX", "Jupyter"],
     },
-  ];
+    {
+      label: "Data",
+      color: "#ec4899",
+      skills: ["Pandas", "NumPy", "Matplotlib"],
+    },
+  ],
+};
 
-  const calculatePosition = (ring: number, index: number, total: number) => {
-    const radius = ring * 80;
-    const angle = (index / total) * Math.PI * 2 - Math.PI / 2;
-    const x = Math.cos(angle) * radius;
-    const y = Math.sin(angle) * radius;
-    return { x, y };
-  };
-
-  const renderSkillsNetwork = () => {
-    return (
-      <svg viewBox="-250 -250 500 500" className="w-full h-auto max-w-2xl mx-auto">
-        {/* Center node */}
-        <motion.circle
-          cx="0"
-          cy="0"
-          r="30"
-          fill="var(--accent-primary)"
-          filter="url(#glowCenter)"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, type: "spring" }}
-        />
-        <text
-          x="0"
-          y="5"
-          textAnchor="middle"
-          fill="black"
-          fontFamily="Syne, sans-serif"
-          fontSize="16"
-          fontWeight="700"
-          style={{ pointerEvents: "none" }}
-        >
-          Rayan
-        </text>
-
-        {/* Connections from center */}
-        {skillGroups.map((group, groupIdx) => {
-          const angle = (groupIdx / skillGroups.length) * Math.PI * 2 - Math.PI / 2;
-          const innerX = Math.cos(angle) * 50;
-          const innerY = Math.sin(angle) * 50;
-          const outerX = Math.cos(angle) * (50 + group.ring * 80);
-          const outerY = Math.sin(angle) * (50 + group.ring * 80);
-
-          return (
-            <line
-              key={`line-${group.ring}`}
-              x1={innerX}
-              y1={innerY}
-              x2={outerX}
-              y2={outerY}
-              stroke={group.color}
-              strokeWidth="1"
-              opacity="0.3"
-            />
-          );
-        })}
-
-        {/* Skill groups */}
-        {skillGroups.map((group) => {
-          const baseAngle =
-            (skillGroups.indexOf(group) / skillGroups.length) * Math.PI * 2 -
-            Math.PI / 2;
-
-          return (
-            <g key={group.ring}>
-              {group.skills.map((skill, index) => {
-                const total = group.skills.length;
-                const angle = baseAngle + (index / total) * (Math.PI * 2 / 3); // arc span
-                const radius = group.ring * 80;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
-
-                return (
-                  <motion.g
-                    key={skill.name}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 + group.ring * 0.2 }}
-                    onMouseEnter={() => setHoveredNode(skill.name)}
-                    onMouseLeave={() => setHoveredNode(null)}
-                  >
-                    {/* Connection line to parent */}
-                    <line
-                      x1={x * 0.7}
-                      y1={y * 0.7}
-                      x2={x}
-                      y2={y}
-                      stroke={group.color}
-                      strokeWidth="1"
-                      opacity="0.5"
-                    />
-
-                    {/* Node */}
-                    <motion.circle
-                      cx={x}
-                      cy={y}
-                      r="8"
-                      fill={group.color}
-                      whileHover={{ r: 12 }}
-                      transition={{ duration: 0.2 }}
-                    />
-
-                    {/* Label */}
-                    <motion.text
-                      x={x}
-                      y={y + 25}
-                      textAnchor="middle"
-                      fill="var(--text-secondary)"
-                      fontFamily="JetBrains Mono, monospace"
-                      fontSize="10"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 + 0.3 }}
-                    >
-                      {skill.name}
-                    </motion.text>
-                  </motion.g>
-                );
-              })}
-            </g>
-          );
-        })}
-
-        {/* Glow filter definitions */}
-        <defs>
-          <filter id="glowCenter">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-      </svg>
-    );
-  };
+const Skills: React.FC = () => {
+  const categories = skillTree.categories;
+  const catRadius = 140;
+  const skillRadius = 240;
+  const totalCategories = categories.length;
+  const sectorAngle = (2 * Math.PI) / totalCategories;
 
   return (
     <section id="skills" className="min-h-screen bg-primary py-24 flex items-center">
@@ -218,7 +61,7 @@ const Skills: React.FC = () => {
             What I build with.
           </h2>
           <p className="font-body text-lg text-text-secondary max-w-2xl mx-auto">
-            Every tool below has been used in a real shipped system or published research.
+            I don&apos;t list skills I&apos;ve read about. Every tool here has a GitHub commit or a published paper behind it.
           </p>
         </motion.div>
 
@@ -230,24 +73,162 @@ const Skills: React.FC = () => {
           transition={{ delay: 0.2 }}
           className="flex items-center justify-center"
         >
-          {renderSkillsNetwork()}
+          <svg viewBox="-250 -250 500 500" className="w-full max-w-2xl">
+            <defs>
+              <filter id="glowCenter">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            {/* Connections from center to categories */}
+            {categories.map((cat, i) => {
+              const angle =
+                (i / totalCategories) * 2 * Math.PI - Math.PI / 2;
+              const cx = Math.cos(angle) * catRadius;
+              const cy = Math.sin(angle) * catRadius;
+              return (
+                <line
+                  key={`line-center-${i}`}
+                  x1={0}
+                  y1={0}
+                  x2={cx}
+                  y2={cy}
+                  stroke={cat.color}
+                  strokeWidth="1"
+                  opacity="0.3"
+                />
+              );
+            })}
+
+            {/* Category nodes and their skills */}
+            {categories.map((cat, i) => {
+              const angle =
+                (i / totalCategories) * 2 * Math.PI - Math.PI / 2;
+              const cx = Math.cos(angle) * catRadius;
+              const cy = Math.sin(angle) * catRadius;
+              const skills = cat.skills;
+              const skillCount = skills.length;
+
+              return (
+                <React.Fragment key={i}>
+                  {/* Connection lines from category to each skill */}
+                  {skills.map((skill, j) => {
+                    const skillAngle =
+                      angle - sectorAngle / 2 +
+                      ((j + 1) / (skillCount + 1)) * sectorAngle;
+                    const sx = Math.cos(skillAngle) * skillRadius;
+                    const sy = Math.sin(skillAngle) * skillRadius;
+                    return (
+                      <line
+                        key={`line-${i}-${j}`}
+                        x1={cx}
+                        y1={cy}
+                        x2={sx}
+                        y2={sy}
+                        stroke={cat.color}
+                        strokeWidth="0.5"
+                        opacity="0.5"
+                      />
+                    );
+                  })}
+
+                  {/* Category node */}
+                  <motion.circle
+                    cx={cx}
+                    cy={cy}
+                    r="12"
+                    fill={cat.color}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                  />
+                  {/* Category label */}
+                  <text
+                    x={cx}
+                    y={cy + 24}
+                    textAnchor="middle"
+                    fill="var(--text-secondary)"
+                    fontFamily="JetBrains Mono, monospace"
+                    fontSize="10"
+                  >
+                    {cat.label}
+                  </text>
+
+                  {/* Skill nodes */}
+                  {skills.map((skill, j) => {
+                    const skillAngle =
+                      angle - sectorAngle / 2 +
+                      ((j + 1) / (skillCount + 1)) * sectorAngle;
+                    const sx = Math.cos(skillAngle) * skillRadius;
+                    const sy = Math.sin(skillAngle) * skillRadius;
+                    return (
+                      <React.Fragment key={j}>
+                        <motion.circle
+                          cx={sx}
+                          cy={sy}
+                          r="5"
+                          fill={cat.color}
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            delay: i * 0.1 + j * 0.05,
+                            duration: 0.4,
+                          }}
+                        />
+                        <text
+                          x={sx}
+                          y={sy + 18}
+                          textAnchor="middle"
+                          fill="var(--text-dim)"
+                          fontFamily="JetBrains Mono, monospace"
+                          fontSize="8"
+                        >
+                          {skill}
+                        </text>
+                      </React.Fragment>
+                    );
+                  })}
+                </React.Fragment>
+              );
+            })}
+
+            {/* Center node */}
+            <motion.circle
+              cx={0}
+              cy={0}
+              r="20"
+              fill="var(--accent-primary)"
+              filter="url(#glowCenter)"
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            />
+            <text
+              x={0}
+              y={6}
+              textAnchor="middle"
+              fill="black"
+              fontFamily="Syne, sans-serif"
+              fontSize="12"
+              fontWeight="700"
+              style={{ pointerEvents: "none" }}
+            >
+              MR
+            </text>
+          </svg>
         </motion.div>
 
-        {/* Hover info */}
-        {hoveredNode && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mt-8"
-          >
-            <p className="font-mono text-accent-primary">{hoveredNode}</p>
-          </motion.div>
-        )}
-
-        {/* Fallback: Tag cloud for mobile/small screens */}
-        <div className="mt-16 text-center md:hidden">
-          <p className="font-mono text-text-dim text-sm">
-            View on larger screen for interactive network
+        {/* Footer note */}
+        <div className="mt-8 text-center">
+          <p className="font-mono text-xs text-text-dim">
+            Hover nodes to explore connections
           </p>
         </div>
       </div>

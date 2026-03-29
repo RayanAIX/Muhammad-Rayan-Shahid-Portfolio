@@ -123,6 +123,39 @@ const About: React.FC = () => {
               </p>
             </div>
 
+            {/* GitHub stats teaser */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1 }}
+              className="mt-8"
+            >
+              <p className="font-mono text-xs text-text-dim mb-3">
+                229 contributions in 2025 · Joined GitHub Jun 2025 · 23 public repos
+              </p>
+              {/* Mini heatmap: 7 rows x 52 columns */}
+              <div className="flex gap-[3px] w-full max-w-md mx-auto">
+                {Array.from({ length: 52 }).map((_, week) => (
+                  <div key={week} className="flex flex-col gap-[3px]">
+                    {Array.from({ length: 7 }).map((_, day) => {
+                      // Generate a fixed pseudo-random pattern based on week and day
+                      const value = Math.sin(week * 0.5 + day * 0.3) * 0.5 + 0.5;
+                      const level = value < 0.25 ? 0 : value < 0.5 ? 1 : value < 0.75 ? 2 : 3;
+                      const colors = ["#111116", "#0a4d76", "#0095c7", "#00d4ff"];
+                      return (
+                        <div
+                          key={day}
+                          className="w-3 h-3 rounded-sm"
+                          style={{ backgroundColor: colors[level] }}
+                        />
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
             {/* Social Links */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
