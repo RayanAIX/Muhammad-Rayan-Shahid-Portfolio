@@ -8,6 +8,7 @@ import Lenis from "lenis";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import { AtmosphericBackground } from "@/components/ui/AtmosphericBackground";
 import Hero from "@/components/sections/Hero";
 import StorytellingScroll from "@/components/sections/StorytellingScroll";
 import HCMS from "@/components/sections/HCMS";
@@ -78,6 +79,9 @@ const HomePage: React.FC = () => {
     <>
       {/* Reading Progress Bar */}
       <ReadingProgressBar />
+
+      {/* Atmospheric Background */}
+      <AtmosphericBackground />
 
       {/* Custom Cursor */}
       <CustomCursor />
