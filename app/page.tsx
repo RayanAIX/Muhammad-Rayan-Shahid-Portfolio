@@ -9,6 +9,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { AtmosphericBackground } from "@/components/ui/AtmosphericBackground";
+import { ActivationOverlay } from "@/components/ui/ActivationOverlay";
 import Hero from "@/components/sections/Hero";
 import StorytellingScroll from "@/components/sections/StorytellingScroll";
 import HCMS from "@/components/sections/HCMS";
@@ -24,7 +25,7 @@ const ReadingProgressBar = () => {
   const { scrollYProgress } = useScroll();
   return (
     <motion.div
-      className="fixed top-0 left-0 h-[2px] bg-accent-primary origin-left z-50"
+      className="fixed top-0 left-0 right-0 h-[2px] z-[9999] bg-gradient-to-r from-[#00d4ff] to-[#7c3aed] origin-left"
       style={{ scaleX: scrollYProgress }}
     />
   );
@@ -77,6 +78,9 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+      {/* Activation Overlay */}
+      <ActivationOverlay />
+
       {/* Reading Progress Bar */}
       <ReadingProgressBar />
 
