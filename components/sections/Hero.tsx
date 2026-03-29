@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import NeuralNetworkCanvas from "@/components/three/NeuralNetwork";
+import ParticleField from "@/components/three/ParticleField";
 import { constants } from "@/lib/constants";
 
 const Hero: React.FC = () => {
@@ -50,9 +50,9 @@ const Hero: React.FC = () => {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Three.js Background */}
+      {/* Particle Background */}
       <motion.div style={{ opacity, scale, filter: blur }}>
-        <NeuralNetworkCanvas />
+        <ParticleField />
       </motion.div>
 
       {/* Content */}
