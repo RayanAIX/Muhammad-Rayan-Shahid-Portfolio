@@ -9,7 +9,6 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { AtmosphericBackground } from "@/components/ui/AtmosphericBackground";
-import { ActivationOverlay } from "@/components/ui/ActivationOverlay";
 import Hero from "@/components/sections/Hero";
 import StorytellingScroll from "@/components/sections/StorytellingScroll";
 import UnderstandingSection from "@/components/sections/UnderstandingSection";
@@ -79,8 +78,8 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      {/* Activation Overlay */}
-      <ActivationOverlay />
+      {/* Activation Overlay - DISABLED for urgent fix */}
+      {/* <ActivationOverlay /> */}
 
       {/* Reading Progress Bar */}
       <ReadingProgressBar />
